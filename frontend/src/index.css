@@ -13,3 +13,8 @@ h3 {
 /* .ddd {
   height: 250px !important;
 } */
+
+.centru a {
+  display: flex;
+  justify-content: center;
+}
