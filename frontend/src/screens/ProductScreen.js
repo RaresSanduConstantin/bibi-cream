@@ -23,8 +23,13 @@ const ProductScreen = ({ match }) => {
         Go Back
       </Link>
       <Row>
-        <Col md={4}>
-          <Image src={product.image} alt={product.name} fluid />
+        <Col md={5}>
+          <Image
+            src={product.image}
+            alt={product.name}
+            fluid
+            style={{ height: "auto" }}
+          />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
