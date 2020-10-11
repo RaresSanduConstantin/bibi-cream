@@ -14,9 +14,10 @@ import Rating from "../components/Rating";
 import { listProductDetails } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { addToCart } from "../actions/cartActions";
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -27,8 +28,12 @@ const ProductScreen = ({ history, match }) => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch]);
 
+  // const addToCartHandler = () => {
+  //   history.push(`/cart/${match.params.id}?qty=${qty}`);
+  // };
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    dispatch(addToCart(product._id, qty));
+    history.push("/cart");
   };
 
   return (
