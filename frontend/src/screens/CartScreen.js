@@ -32,11 +32,10 @@ const CartScreen = ({ match, location, history }) => {
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
-    // history.push("/cart");
   };
 
   const checkoutHandler = () => {
-    // history.push("/login?redirect=shipping");
+    history.push("/login?redirect=shipping");
   };
 
   return (
@@ -67,7 +66,6 @@ const CartScreen = ({ match, location, history }) => {
                         dispatch(
                           addToCart(item.product, Number(e.target.value))
                         );
-                        history.push("/cart");
                       }}
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
@@ -110,7 +108,7 @@ const CartScreen = ({ match, location, history }) => {
                 type="button"
                 className="btn-block"
                 disabled={cartItems.length === 0}
-                onClick={checkoutHandler()}
+                onClick={checkoutHandler}
               >
                 Proceed to CheckOut
               </Button>

@@ -33,7 +33,7 @@ const ProductScreen = ({ history, match }) => {
   // };
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
-    history.push("/cart");
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
   return (
