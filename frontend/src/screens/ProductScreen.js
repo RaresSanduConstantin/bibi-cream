@@ -53,6 +53,7 @@ const ProductScreen = ({ history, match }) => {
             <Image
               src={product.image}
               alt={product.name}
+              className="imagine-bg"
               fluid
               style={{ height: "auto" }}
             />
