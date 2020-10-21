@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
+import Product from "../models/productModel.js";
 
 // @desc Create new order
 // @route POST /api/orders
@@ -15,23 +16,29 @@ const addOrderItems = asyncHandler(async (req, res) => {
     totalPrice,
   } = req.body;
 
-  if (orderItems && orderItems.length === 0) {
+  if (orderItems?.length < 1) {
     res.status(400);
     throw new Error("No order items");
-    return;
   } else {
     const order = new Order({
       orderItems,
-      user: req.user._id,
       shippingAddress,
       paymentMethod,
       itemsPrice,
       taxPrice,
       shippingPrice,
       totalPrice,
+      user: req.user._id,
     });
 
     const createdOrder = await order.save();
+
+    for (let item of createdOrder.orderItems) {
+      const product = await Product.findById(item.product);
+      product.countInStock -= item.qty;
+      await product.save();
+    }
+
     res.status(201).json(createdOrder);
   }
 });
