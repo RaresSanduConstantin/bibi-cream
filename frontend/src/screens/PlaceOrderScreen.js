@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderAction";
 
-const PlaceOrderScreen = ({ history }) => {
+const PlaceOrderScreen = ({ history, location }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -34,10 +34,11 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/orders/${order._id}`);
+      window.location.reload();
     }
 
     // eslint-disable-next-line
-  }, [history, success]);
+  }, [history, success, location]);
 
   const placeOrderHandler = () => {
     dispatch(
