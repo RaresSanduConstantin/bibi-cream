@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderAction";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
-const PlaceOrderScreen = ({ history, location }) => {
+const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -34,11 +35,11 @@ const PlaceOrderScreen = ({ history, location }) => {
   useEffect(() => {
     if (success) {
       history.push(`/orders/${order._id}`);
-      window.location.reload();
+      dispatch({ type: ORDER_CREATE_RESET });
     }
 
     // eslint-disable-next-line
-  }, [history, success, location]);
+  }, [history, success]);
 
   const placeOrderHandler = () => {
     dispatch(

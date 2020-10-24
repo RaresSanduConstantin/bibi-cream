@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listOrders, deleteOrder } from "../actions/orderAction";
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants";
 
 const OrderListScreen = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const OrderListScreen = ({ history, location }) => {
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
+      dispatch({ type: ORDER_DETAILS_RESET });
     } else {
       history.push("/login");
     }
@@ -75,13 +77,7 @@ const OrderListScreen = ({ history, location }) => {
                 </td>
                 <td>
                   <LinkContainer to={`/orders/${order._id}`}>
-                    <Button
-                      variant="light"
-                      className="btn-sm"
-                      onClick={() => {
-                        location.reload();
-                      }}
-                    >
+                    <Button variant="light" className="btn-sm">
                       Details
                     </Button>
                   </LinkContainer>

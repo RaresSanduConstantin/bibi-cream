@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderAction";
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants";
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -36,6 +37,7 @@ const ProfileScreen = ({ location, history }) => {
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
+        dispatch({ type: ORDER_DETAILS_RESET });
         setName(user.name);
         setEmail(user.email);
       }
@@ -144,11 +146,7 @@ const ProfileScreen = ({ location, history }) => {
                   </td>
                   <td>
                     <LinkContainer to={`/orders/${order._id}`}>
-                      <Button
-                        className="btn-sm"
-                        variant="light"
-                        onClick={() => location.reload()}
-                      >
+                      <Button className="btn-sm" variant="light">
                         Details
                       </Button>
                     </LinkContainer>

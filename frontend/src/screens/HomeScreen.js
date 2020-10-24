@@ -5,6 +5,7 @@ import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listProducts } from "../actions/productActions";
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(listProducts());
+    dispatch({ type: ORDER_DETAILS_RESET });
   }, [dispatch]);
 
   return (
