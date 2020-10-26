@@ -14,6 +14,7 @@ import Rating from "../components/Rating";
 import {
   listProductDetails,
   createProductReview,
+  deleteProductReview,
 } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -39,6 +40,12 @@ const ProductScreen = ({ history, match }) => {
     success: successProductReview,
   } = productReviewCreate;
 
+  const productReviewDelete = useSelector((state) => state.productReviewDelete);
+  const {
+    error: errorProductReviewDelete,
+    success: successProductReviewDelete,
+  } = productReviewDelete;
+
   useEffect(() => {
     if (successProductReview) {
       alert("Review Submitted!");
@@ -51,9 +58,6 @@ const ProductScreen = ({ history, match }) => {
     // eslint-disable-next-line
   }, [dispatch, match, successProductReview]);
 
-  // const addToCartHandler = () => {
-  //   history.push(`/cart/${match.params.id}?qty=${qty}`);
-  // };
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
     history.push(`/cart/${match.params.id}?qty=${qty}`);
@@ -67,6 +71,13 @@ const ProductScreen = ({ history, match }) => {
         comment,
       })
     );
+  };
+
+  const deleteReviewHandler = () => {
+    // alert("Are you sure?");
+    // dispatch(deleteProductReview(match.params.id, );
+    const id = product.reviews.filter((id) => id._id);
+    console.log(product.reviews.filter((i) => (i._id = id)));
   };
 
   return (
@@ -171,8 +182,15 @@ const ProductScreen = ({ history, match }) => {
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
+                    {userInfo && userInfo.isAdmin && (
+                      <Button type="button" onClick={deleteReviewHandler}>
+                        <i className="fa fa-times"></i> Delete Review
+                      </Button>
+                    )}
+                    <br></br>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
+
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>

@@ -145,10 +145,11 @@ const createProdutReview = asyncHandler(async (req, res) => {
 // @access Private/Admin
 
 const deleteProductReview = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findByIdAndUpdate(req.params.id, {
+    $pull: { reviews: { _id: req.params.reviewId } },
+  });
 
   if (product) {
-    await product.remove();
     res.json({ message: "Review removed" });
   } else {
     res.status(404);
