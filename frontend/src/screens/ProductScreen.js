@@ -19,9 +19,12 @@ import {
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { addToCart } from "../actions/cartActions";
-import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import {
+  PRODUCT_CREATE_REVIEW_RESET,
+  PRODUCT_DELETE_REVIEW_RESET,
+} from "../constants/productConstants";
 
-const ProductScreen = ({ history, match }) => {
+const ProductScreen = ({ history, match, location }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -42,7 +45,7 @@ const ProductScreen = ({ history, match }) => {
 
   const productReviewDelete = useSelector((state) => state.productReviewDelete);
   const {
-    error: errorProductReviewDelete,
+    loading: loadingProductReviewDelete,
     success: successProductReviewDelete,
   } = productReviewDelete;
 
@@ -54,9 +57,14 @@ const ProductScreen = ({ history, match }) => {
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
 
+    if (successProductReviewDelete) {
+      alert("You deleted a review");
+      dispatch({ type: PRODUCT_DELETE_REVIEW_RESET });
+    }
+
     dispatch(listProductDetails(match.params.id));
     // eslint-disable-next-line
-  }, [dispatch, match, successProductReview]);
+  }, [dispatch, match, successProductReview, successProductReviewDelete]);
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
@@ -73,11 +81,11 @@ const ProductScreen = ({ history, match }) => {
     );
   };
 
-  const deleteReviewHandler = () => {
-    // alert("Are you sure?");
-    // dispatch(deleteProductReview(match.params.id, );
-    const id = product.reviews.filter((id) => id._id);
-    console.log(product.reviews.filter((i) => (i._id = id)));
+  const deleteReviewHandler = (revId) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteProductReview(match.params.id, revId));
+      dispatch(listProductDetails(match.params.id));
+    }
   };
 
   return (
@@ -85,7 +93,7 @@ const ProductScreen = ({ history, match }) => {
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-
+      {loadingProductReviewDelete && <Loader />}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -183,7 +191,10 @@ const ProductScreen = ({ history, match }) => {
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
                     {userInfo && userInfo.isAdmin && (
-                      <Button type="button" onClick={deleteReviewHandler}>
+                      <Button
+                        type="button"
+                        onClick={() => deleteReviewHandler(review._id)}
+                      >
                         <i className="fa fa-times"></i> Delete Review
                       </Button>
                     )}
