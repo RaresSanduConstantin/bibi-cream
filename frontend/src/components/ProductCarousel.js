@@ -22,7 +22,7 @@ const ProductCarousel = () => {
   ) : (
     <Carousel
       pause="hover"
-      className="bg-dark"
+      className="bg-dark bg-img"
       style={{ borderRadius: "10px" }}
     >
       {products.map((product) => (

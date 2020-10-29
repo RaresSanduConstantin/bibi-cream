@@ -75,6 +75,13 @@ h2 {
   height: auto;
 }
 
+.bg-img {
+  background-image: url("https://wallpaperaccess.com/full/942734.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 @media (max-width: 575.98px) {
   .btn-mobil {
     display: block;
