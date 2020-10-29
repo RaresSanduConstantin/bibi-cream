@@ -74,3 +74,32 @@ h2 {
 .fix-img {
   height: auto;
 }
+
+@media (max-width: 575.98px) {
+  .btn-mobil {
+    display: block;
+    width: 100%;
+  }
+  .form-p-mobil {
+    margin: auto;
+  }
+
+  .form-mobil {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .carousel img {
+    height: 210px;
+    padding: 30px;
+    margin-top: 70px;
+  }
+
+  .carousel-caption h2 {
+    font-size: 14px;
+  }
+
+  .text-mobile {
+    font-size: 14px;
+  }
+}

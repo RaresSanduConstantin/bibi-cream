@@ -14,19 +14,19 @@ const SearchBox = ({ history }) => {
   };
 
   return (
-    <Form onSubmit={submitHandler} inline>
+    <Form onSubmit={submitHandler} inline className="form-p-mobil">
       <Form.Control
         type="text"
         name="q"
         onChange={(e) => setKeyword(e.target.value)}
         placeholder="Search Products..."
-        className="mr-sm-2 ml-sm-5"
+        className="mr-sm-2 ml-sm-5 text-center form-mobil"
         style={{ borderRadius: "5px" }}
       ></Form.Control>
       <Button
         type="submit"
         variant="outline-success"
-        className="p-2"
+        className="p-2 btn-mobil"
         style={{ borderRadius: "5px" }}
       >
         Search
