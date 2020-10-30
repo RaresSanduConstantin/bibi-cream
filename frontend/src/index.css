@@ -29,9 +29,17 @@ h2 {
   padding: 0.5rem 0;
 }
 
+.margin-from-header {
+  margin-top: 100px;
+}
+
 .bg-color {
   background: #ffe6d0 !important;
   color: white !important;
+}
+
+.sticky {
+  transition: ease-in-out 0.3ms;
 }
 
 .noMargin {
@@ -82,6 +90,26 @@ h2 {
   background-size: cover;
 }
 
+.navbar {
+  width: 100%;
+  min-height: 6vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  transition: all 0.7s ease-in;
+}
+
+.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* background-color: lightblue; */
+  z-index: 10;
+  max-width: 100%;
+}
+
 @media (max-width: 575.98px) {
   .btn-mobil {
     display: block;
@@ -109,4 +137,8 @@ h2 {
   .text-mobile {
     font-size: 14px;
   }
+  /* 
+  .margin-from-header {
+    margin-top: 220px;
+  } */
 }

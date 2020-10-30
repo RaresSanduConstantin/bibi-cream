@@ -22,6 +22,7 @@ const Header = () => {
     <header>
       <Navbar
         className="bg-color"
+        fixed="top"
         bg="light"
         variant="light"
         expand="lg"
@@ -32,8 +33,8 @@ const Header = () => {
             <Navbar.Brand>Bibi's Cream</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Route render={({ history }) => <SearchBox history={history} />} />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
