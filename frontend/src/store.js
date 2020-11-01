@@ -30,6 +30,11 @@ import {
   orderDeleteReducer,
   orderDeliverReducer,
 } from "./reducers/orderReducers";
+import {
+  contactCreateMessageReducer,
+  contactListReducer,
+  contactDeleteReducer,
+} from "./reducers/contactReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -55,6 +60,9 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  contactCreateMessage: contactCreateMessageReducer,
+  contactList: contactListReducer,
+  contactDelete: contactDeleteReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
