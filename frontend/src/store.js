@@ -62,7 +62,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   contactCreateMessage: contactCreateMessageReducer,
   contactList: contactListReducer,
-  contactDelete: contactDeleteReducer,
+  contactsDelete: contactDeleteReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

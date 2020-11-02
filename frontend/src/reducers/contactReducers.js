@@ -27,7 +27,7 @@ export const contactCreateMessageReducer = (state = {}, action) => {
   }
 };
 
-export const contactListReducer = (state = { contact: [] }, action) => {
+export const contactListReducer = (state = { contacts: [] }, action) => {
   switch (action.type) {
     case CONTACT_DETAILS_REQUEST:
       return { loading: true };
@@ -36,7 +36,7 @@ export const contactListReducer = (state = { contact: [] }, action) => {
     case CONTACT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     case CONTACT_DETAILS_RESET:
-      return { contact: [] };
+      return { contacts: [] };
     default:
       return state;
   }
