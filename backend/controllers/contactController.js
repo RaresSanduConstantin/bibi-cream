@@ -46,6 +46,21 @@ const getContactForm = asyncHandler(async (req, res) => {
   res.json(contacts);
 });
 
+// @desc Fetch single contact
+// @route GET /api/contact/:id
+// @access Private/Admin
+
+const getContactById = asyncHandler(async (req, res) => {
+  const contact = await Contact.findById(req.params.id);
+
+  if (contact) {
+    res.json(contact);
+  } else {
+    res.status(404);
+    throw new Error("contact Not Found!");
+  }
+});
+
 // @desc Delete contact from
 // @route Delete /api/contact/:id
 // access Private/Admin
@@ -61,4 +76,4 @@ const deleteContactForm = asyncHandler(async (req, res) => {
   }
 });
 
-export { addContactForm, getContactForm, deleteContactForm };
+export { addContactForm, getContactForm, getContactById, deleteContactForm };

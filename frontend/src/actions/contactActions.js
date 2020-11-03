@@ -63,6 +63,35 @@ export const contactDetails = () => async (dispatch, getState) => {
   }
 };
 
+// export const contactById = (id) => async (dispatch, getState) => {
+//   try {
+//     dispatch({ type: CONTACT_DETAILT_BY_ID_REQUEST });
+
+//     const {
+//       userLogin: { userInfo },
+//     } = getState();
+
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${userInfo.token}`,
+//       },
+//     };
+
+//     const { data } = await axios.get(`/api/contact/${id}`, config);
+
+//     dispatch({ type: CONTACT_DETAILT_BY_ID_SUCCESS, payload: data });
+//   } catch (error) {
+//     dispatch({
+//       type: CONTACT_DETAILT_BY_ID_FAIL,
+//       payload:
+//         error.response && error.response.data.message
+//           ? error.response.data.message
+//           : error.message,
+//     });
+//   }
+// };
+
 export const contactDelete = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: CONTACT_DELETE_REQUEST });

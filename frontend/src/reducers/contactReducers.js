@@ -42,6 +42,21 @@ export const contactListReducer = (state = { contacts: [] }, action) => {
   }
 };
 
+// export const contactDetailsByIdReducer = (state = { contact: {} }, action) => {
+//   switch (action.type) {
+//     case CONTACT_DETAILT_BY_ID_REQUEST:
+//       return { loading: true };
+//     case CONTACT_DETAILT_BY_ID_SUCCESS:
+//       return { loading: false, contact: action.payload };
+//     case CONTACT_DETAILT_BY_ID_FAIL:
+//       return { loading: false, error: action.payload };
+//     case CONTACT_DETAILT_BY_ID_RESET:
+//       return { contact: {} };
+//     default:
+//       return state;
+//   }
+// };
+
 export const contactDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case CONTACT_DELETE_REQUEST:

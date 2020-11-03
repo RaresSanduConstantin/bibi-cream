@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
+
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -48,6 +48,8 @@ const ContactListScreen = ({ history }) => {
               <th>NAME</th>
               <th>EMAIL</th>
               <th>PHONE</th>
+              <th>MESSAGE</th>
+
               <th></th>
             </tr>
           </thead>
@@ -61,12 +63,9 @@ const ContactListScreen = ({ history }) => {
                   <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </td>
                 <td>{contact.phone}</td>
+                <td>{contact.message}</td>
+
                 <td>
-                  <LinkContainer to={`/admin/contact/${contact._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
-                    </Button>
-                  </LinkContainer>
                   <Button
                     variant="danger"
                     className="btn-sm"

@@ -98,6 +98,7 @@ const ContactScreen = ({ history, match }) => {
             <Form.Control
               as="textarea"
               rows="6"
+              maxLength="600"
               placeholder="Enter Your Message"
               value={message}
               required

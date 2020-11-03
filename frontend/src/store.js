@@ -33,6 +33,7 @@ import {
 import {
   contactCreateMessageReducer,
   contactListReducer,
+  // contactDetailsByIdReducer,
   contactDeleteReducer,
 } from "./reducers/contactReducers";
 
@@ -62,6 +63,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   contactCreateMessage: contactCreateMessageReducer,
   contactList: contactListReducer,
+  // contactDetailsById: contactDetailsByIdReducer,
   contactsDelete: contactDeleteReducer,
 });
 
