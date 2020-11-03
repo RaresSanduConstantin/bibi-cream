@@ -97,7 +97,7 @@ const ContactScreen = ({ history, match }) => {
             <Form.Label>Message</Form.Label>
             <Form.Control
               as="textarea"
-              row="3"
+              rows="6"
               placeholder="Enter Your Message"
               value={message}
               required
