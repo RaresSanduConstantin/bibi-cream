@@ -34,6 +34,15 @@ const LoginScreen = ({ location, history }) => {
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
+      <Link
+        to="/auth/google"
+        className="no-underline d-flex justify-content-center"
+      >
+        <Button className="btn btn-danger">
+          <i className="fab fa-google left"></i> Sign In With Google
+        </Button>
+      </Link>
+      <hr />
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
