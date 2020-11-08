@@ -11,9 +11,11 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 // @route GET /auth/google/callback
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate("google", {
+    failureRedirect: "http://localhost:3000/login",
+  }),
   (req, res) => {
-    res.redirect("/dashboard");
+    res.redirect("/");
   }
 );
 
@@ -21,7 +23,7 @@ router.get(
 // @route /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect("http://localhost:3000/");
 });
 
 export default router;

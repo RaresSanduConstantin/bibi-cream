@@ -7,10 +7,31 @@ const passportGoogle = (passport) => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback",
+        callbackURL: "/api/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
         console.log(profile);
+
+        const newUserGoogle = {
+          googleId: profile.id,
+          displayName: profile.displayName,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          image: profile.photos[0].value,
+        };
+
+        try {
+          let userGoogle = await UserGoogle.findOne({ googleId: profile.id });
+
+          if (userGoogle) {
+            done(null, userGoogle);
+          } else {
+            userGoogle = await UserGoogle.create(newUserGoogle);
+            done(null, userGoogle);
+          }
+        } catch (err) {
+          console.error(err);
+        }
       }
     )
   );
