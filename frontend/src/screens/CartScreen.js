@@ -87,6 +87,7 @@ const CartScreen = ({ match, location, history }) => {
                 </Row>
               </ListGroup.Item>
             ))}
+            <hr />
           </ListGroup>
         )}
       </Col>

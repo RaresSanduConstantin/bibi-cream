@@ -6,6 +6,7 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
 import SearchBox from "./SearchBox";
 import { Route } from "react-router-dom";
+import CartDropDown from "./CartDropDown";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const Header = () => {
               </LinkContainer>
               <LinkContainer to="/cart">
                 <Nav.Link>
+                  <CartDropDown />
                   <i className="fas fa-shopping-cart"></i> Cart
                 </Nav.Link>
               </LinkContainer>
