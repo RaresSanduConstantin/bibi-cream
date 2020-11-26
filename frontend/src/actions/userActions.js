@@ -25,6 +25,12 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
 } from "../constants/userConstants";
+
+import {
+  USER_GOOGLE_LOGIN_FAIL,
+  USER_GOOGLE_LOGIN_REQUEST,
+  USER_GOOGLE_LOGIN_SUCCESS,
+} from "../constants/googleUserConstants";
 import {
   ORDER_DETAILS_RESET,
   ORDER_LIST_MY_RESET,
@@ -60,6 +66,37 @@ export const login = (email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const googleLogin = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_GOOGLE_LOGIN_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.get("/api/auth/google", config);
+    console.log(data);
+    dispatch({
+      type: USER_GOOGLE_LOGIN_SUCCESS,
+      payload: data,
+    });
+
+    // localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_GOOGLE_LOGIN_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

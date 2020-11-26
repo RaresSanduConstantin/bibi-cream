@@ -12,10 +12,10 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/login",
+    failureRedirect: `${process.env.DOMENIU}/login`,
   }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect(`${process.env.DOMENIU}/`);
   }
 );
 
@@ -23,7 +23,7 @@ router.get(
 // @route /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("http://localhost:3000/");
+  res.redirect(`${process.env.DOMENIU}/`);
 });
 
 export default router;

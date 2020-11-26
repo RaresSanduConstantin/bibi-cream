@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { login } from "../actions/userActions";
+import { login, googleLogin } from "../actions/userActions";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -29,16 +29,21 @@ const LoginScreen = ({ location, history }) => {
     dispatch(login(email, password));
   };
 
+  const googleLoginHandler = () => {
+    dispatch(googleLogin());
+    // console.log(123);
+  };
+
   return (
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <a
-        href="http://localhost:5000/api/auth/google"
+        href="http://localhost:5000/api/auth/google/"
         className="no-underline d-flex justify-content-center"
       >
-        <Button className="btn btn-danger">
+        <Button className="btn btn-danger" onClick={googleLoginHandler}>
           <i className="fab fa-google left"></i> Sign In With Google
         </Button>
       </a>

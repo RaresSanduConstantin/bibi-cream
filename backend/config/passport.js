@@ -10,8 +10,6 @@ const passportGoogle = (passport) => {
         callbackURL: "/api/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-
         const newUserGoogle = {
           googleId: profile.id,
           displayName: profile.displayName,
@@ -19,7 +17,7 @@ const passportGoogle = (passport) => {
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
         };
-
+        console.log(profile);
         try {
           let userGoogle = await UserGoogle.findOne({ googleId: profile.id });
 

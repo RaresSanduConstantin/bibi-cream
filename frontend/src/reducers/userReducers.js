@@ -27,6 +27,12 @@ import {
   USER_UPDATE_RESET,
 } from "../constants/userConstants";
 
+import {
+  USER_GOOGLE_LOGIN_FAIL,
+  USER_GOOGLE_LOGIN_REQUEST,
+  USER_GOOGLE_LOGIN_SUCCESS,
+} from "../constants/googleUserConstants";
+
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
@@ -44,11 +50,11 @@ export const userLoginReducer = (state = {}, action) => {
 
 export const userGoogleLoginReducer = (state = {}, action) => {
   switch (action.type) {
-    case USER_LOGIN_REQUEST:
+    case USER_GOOGLE_LOGIN_REQUEST:
       return { loading: true };
-    case USER_LOGIN_SUCCESS:
+    case USER_GOOGLE_LOGIN_SUCCESS:
       return { loading: false, userInfo: action.payload };
-    case USER_LOGIN_FAIL:
+    case USER_GOOGLE_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case USER_LOGOUT:
       return {};
